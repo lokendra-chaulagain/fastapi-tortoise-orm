@@ -1,13 +1,20 @@
-from tortoise import fields, models
-from tortoise.contrib.pydantic import pydantic_model_creator
+from tortoise import  fields
+from tortoise.models import Model
+from pydantic import BaseModel
 
 
-class Users(models.Model):
+class User(Model):
     id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=20, unique=True)
-    email = fields.CharField(max_length=50, null=True)
+    name = fields.CharField(max_length=255)
+    email = fields.CharField(max_length=255)
 
 
-User_Pydantic = pydantic_model_creator(Users, name="User")
-UserIn_Pydantic = pydantic_model_creator(
-    Users, name="UserIn", exclude_readonly=True)
+class UserIn(BaseModel):
+    name: str
+    email: str
+
+
+class UserOut(BaseModel):
+    id: int
+    name: str
+    email: str
