@@ -1,6 +1,6 @@
 from typing import List
 from fastapi import FastAPI, HTTPException
-from app.models import User, UserIn, UserOut, init_db
+from app.models import User, UserIn, UserOut
 from tortoise.contrib.fastapi import register_tortoise
 from tortoise import Tortoise
 
