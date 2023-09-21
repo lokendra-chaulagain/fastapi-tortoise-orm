@@ -66,7 +66,7 @@ async def delete_user(user_id: int):
 
 TORTOISE_ORM = {
     "connections": {
-        "default": "postgres://fnrlflit:APSQdQS6WBhMsxkC7nF4GrBfFI64tBs0@berry.db.elephantsql.com/fnrlflit"
+        "default": "postgres://qbvzrnkt:dQXdInNZuNeIn99-l42kvdyIMljsp6yW@berry.db.elephantsql.com/qbvzrnkt"
     },
     "apps": {
         "models": {

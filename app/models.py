@@ -21,3 +21,8 @@ class UserOut(BaseModel):
     email: str
 
 
+
+class Product(Model):
+    id = fields.IntField(pk=True)
+    product_name = fields.CharField(max_length=255)
+    product_email = fields.CharField(max_length=255)
