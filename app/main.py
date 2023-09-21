@@ -1,12 +1,14 @@
 from typing import List
 from fastapi import FastAPI, HTTPException
-from app.models import User, UserIn, UserOut
+# from app.models1 import User, UserIn, UserOut
 from tortoise.contrib.fastapi import register_tortoise
 from tortoise import Tortoise
 
 app = FastAPI()
 
 # Initialize Tortoise ORM
+
+
 async def init():
     await Tortoise.init(
         config=TORTOISE_ORM,
@@ -24,44 +26,44 @@ async def shutdown_db_client():
     await Tortoise.close_connections()
 
 
-@app.get('/users', response_model=List[UserOut])
-async def get_users():
-    users = await User.all()
-    return users
+# @app.get('/users', response_model=List[UserOut])
+# async def get_users():
+#     users = await User.all()
+#     return users
 
 
-@app.post("/users", response_model=UserOut)
-async def create_user(user: UserIn):
-    user_obj = await User.create(**user.model_dump())
-    return user_obj
+# @app.post("/users", response_model=UserOut)
+# async def create_user(user: UserIn):
+#     user_obj = await User.create(**user.model_dump())
+#     return user_obj
 
 
-@app.put("/users/{user_id}", response_model=UserOut)
-async def update_user(user_id: int, user_in: UserIn):
-    user_obj = await User.get_or_none(id=user_id)
-    if user_obj is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    user_obj.name = user_in.name
-    user_obj.email = user_in.email
-    await user_obj.save()
-    return user_obj
+# @app.put("/users/{user_id}", response_model=UserOut)
+# async def update_user(user_id: int, user_in: UserIn):
+#     user_obj = await User.get_or_none(id=user_id)
+#     if user_obj is None:
+#         raise HTTPException(status_code=404, detail="User not found")
+#     user_obj.name = user_in.name
+#     user_obj.email = user_in.email
+#     await user_obj.save()
+#     return user_obj
 
 
-@app.get("/users/{user_id}", response_model=UserOut)
-async def get_user(user_id: int):
-    user_obj = await User.get_or_none(id=user_id)
-    if user_obj is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return user_obj
+# @app.get("/users/{user_id}", response_model=UserOut)
+# async def get_user(user_id: int):
+#     user_obj = await User.get_or_none(id=user_id)
+#     if user_obj is None:
+#         raise HTTPException(status_code=404, detail="User not found")
+#     return user_obj
 
 
-@app.delete("/users/{user_id}", response_model=UserOut)
-async def delete_user(user_id: int):
-    user_obj = await User.get_or_none(id=user_id)
-    if user_obj is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    await user_obj.delete()
-    return user_obj
+# @app.delete("/users/{user_id}", response_model=UserOut)
+# async def delete_user(user_id: int):
+#     user_obj = await User.get_or_none(id=user_id)
+#     if user_obj is None:
+#         raise HTTPException(status_code=404, detail="User not found")
+#     await user_obj.delete()
+#     return user_obj
 
 
 TORTOISE_ORM = {
@@ -70,7 +72,7 @@ TORTOISE_ORM = {
     },
     "apps": {
         "models": {
-            "models": ["app.models", "aerich.models"],
+            "models": ["app.models.RoomType", "app.models.Room","app.models.Guest", "aerich.models"],
             "default_connection": "default",
         },
     }
