@@ -3,7 +3,9 @@ from fastapi import FastAPI
 from tortoise import Tortoise
 from routes.guestRoute import guestRouter
 from config.Database import init
-app = FastAPI()
+from config.EnvironmentSettings import settings
+
+app = FastAPI(title=settings.APP_NAME, version=settings.API_VERSION)
 
 
 @app.on_event("startup")
