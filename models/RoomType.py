@@ -1,7 +1,6 @@
-from tortoise import fields, Tortoise
+from tortoise import fields
 from tortoise.models import Model
-from pydantic import BaseModel
-from tortoise.contrib.fastapi import register_tortoise
+
 
 
 class RoomType(Model):
