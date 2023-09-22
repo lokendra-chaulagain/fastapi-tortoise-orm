@@ -1,7 +1,7 @@
 instruction.md
 pyproject.toml
 venv
-migration
+migrations/
 config/__pycache__
 routes/__pycache__
 models/__pycache__
