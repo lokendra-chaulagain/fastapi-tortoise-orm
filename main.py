@@ -1,7 +1,6 @@
 
 from fastapi import FastAPI
 from tortoise import Tortoise
-# from services.guestService import guestRouter
 from routes.guestRoute import guestRouter
 from config.Database import init
 app = FastAPI()
