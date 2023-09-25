@@ -1,12 +1,22 @@
 from typing import List
-from schemas.guestSchema import GuestIn, GuestOut
+from schemas.guestSchema import GuestIn, GuestOut, GuestQueryParams
 from models.Guest import Guest
 from fastapi import HTTPException
 
 
-async def guestRepository_get_all() -> List[GuestOut]:
-    guests = await Guest.all()
-    return guests
+async def guestRepository_get_all(query_params: GuestQueryParams) -> List[GuestOut]:
+    offset = (query_params.page - 1) * query_params.limit
+    query = Guest.all()
+
+    if query_params.name:
+        query = query.filter(name__icontains=query_params.name)
+    if query_params.email:
+        query = query.filter(email__icontains=query_params.email)
+    if query_params.phone:
+        query = query.filter(phone__icontains=query_params.phone)
+
+    guests = await query.offset(offset).limit(query_params.limit)
+    return list(guests)
 
 
 async def guestRepository_create(guest: GuestIn) -> GuestOut:

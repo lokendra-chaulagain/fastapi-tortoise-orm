@@ -1,13 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from typing import List
-from schemas.guestSchema import GuestIn, GuestOut
+from schemas.guestSchema import GuestIn, GuestOut, GuestQueryParams
 from services.guestService import guestService_get_all, guestService_create, guestService_get_one, guestService_delete, guestService_update
 guestRouter = APIRouter()
 
 
 @guestRouter.get("", response_model=List[GuestOut])
-async def get_all_guests():
-    return await guestService_get_all()
+async def get_all_guests(query_params: GuestQueryParams = Depends()):
+    return await guestService_get_all(query_params)
 
 
 @guestRouter.post("", response_model=GuestOut)
