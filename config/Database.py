@@ -15,7 +15,7 @@ TORTOISE_ORM = {
     },
     "apps": {
         "models": {
-            "models": ["models.RoomType", "models.Room", "models.Guest", "models.Booking", "models.CheckIn", "models.CheckInGuestDetail", "models.Item", "models.ItemUnit", "models.User", "models.Party", "models.Table", "models.Order", "models.PurchaseRow", "models.Purchase", "models.Sale", "models.Table", "models.InventoryAccount", "models.InventoryAccount", "models.ItemCategory", "aerich.models"],
+            "models": ["models.Table", "models.Sale", "aerich.models"],
             "default_connection": "default",
         },
     }
