@@ -5,14 +5,14 @@ from pydantic import BaseModel
 class SaleIn(BaseModel):
     discount_amount: float
     is_draft: bool
-    # table: int
+    table: int
 
 
 class SaleOut(BaseModel):
     id: int
     discount_amount: float
     is_draft: bool
-    # table: int
+    table: int
 
 
 class SaleQueryParams(BaseModel):

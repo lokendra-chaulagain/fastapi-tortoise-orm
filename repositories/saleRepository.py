@@ -16,9 +16,19 @@ async def saleRepository_get_all(query_params: SaleQueryParams) -> List[SaleOut]
 
 
 async def saleRepository_create(sale: SaleIn) -> SaleOut:
-    new_sale = await Sale.create(discount_amount=sale.discount_amount, is_draft=sale.is_draft, )
-    await new_sale.save()
-    return new_sale
+    print(sale, "_____________________________________________________________________")
+    # Table = {
+    #     "id": 1,
+    #     "name": "string1"
+    # }
+    # new_sale = await Sale.create(discount_amount=sale.discount_amount, is_draft=sale.is_draft, table=Table)
+    # await new_sale.save()
+    return {
+        "id": 1,
+        "discount_amount": 10,
+        "is_draft": True,
+        "table": 1 
+    }
 
 
 # async def saleRepository_create(sale: SaleIn) -> SaleOut:

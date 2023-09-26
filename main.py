@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from tortoise import Tortoise
 from routes.tableRoute import tableRouter
 from routes.saleRoute import saleRouter
+from routes.userRoute import userRouter
+from routes.authRoute import authRouter
 # from routes.itemRoute import itemRouter
 from config.Database import init
 from config.EnvironmentSettings import settings
@@ -24,3 +26,5 @@ async def shutdown_db_client():
 app.include_router(tableRouter, prefix="/tables", tags=["tables"])
 app.include_router(saleRouter, prefix="/sales", tags=["sales"])
 # app.include_router(itemRouter, prefix="/items", tags=["items"])
+app.include_router(userRouter, prefix="/users", tags=["users"])
+app.include_router(authRouter, prefix="/auth", tags=["auth"])
